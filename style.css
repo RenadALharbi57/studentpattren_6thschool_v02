@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+        flex-direction: column;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+.quistioncontainer {
+    width: 60vw ;
+    padding: 24px;
+    height: fit-content;
+    border-radius: 30px;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe,
+                -15px -15px 30px #ffffff;
+}
+.imgcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    align-items: center;
+        overflow: hidden;
+       gap: 10px;
+        justify-content: center;
+       
+        margin: auto;
+        margin-top: -50px;
+     
+}
+
+.imgcontainer img {
+   width: 30px;
+    
+    margin: 10px;
+}
