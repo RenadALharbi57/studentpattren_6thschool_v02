@@ -84,8 +84,7 @@ const questions = [
 ];
 const classOptions = [
   "1-2", "2-2",
-  "3-2", "4-2", "5-2", "تمهيدي 1", "تمهيدي 2", "تمهيدي 3", "تمهيدي 4",
-  "تمهيدي 5", "تمهيدي 6"
+  "3-2", "4-2", "5-2", "1-3", "2-3", "3-3", "4-3", "5-3", "6-3"
 ];
 let currentQuestionIndex = 0;
 let selectedValues = [];
@@ -474,6 +473,7 @@ function showCelebration(options = {}) {
     tryPopulate();
   }, 700);
 })();
+
 
 
 
