@@ -50,7 +50,6 @@ button:hover {
     background-color: #45a049;
 }
 .quistioncontainer {
-    margin-top: 40px;
     width: 80vw ;
     padding: 24px;
     height: fit-content;
@@ -123,13 +122,17 @@ button:hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     color: #4a7ab5;
 
-    input{
+    input ,select{
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
         font-size: 16px;
         text-align: right;
     }
+
+    select{
+    direction: rtl;    
+}
 
     .startbtncontainer{
         display: flex;

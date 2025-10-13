@@ -109,6 +109,8 @@ document.getElementById("startBtn").addEventListener("click", () => {
 // 🔹 تحميل السؤال (نسخة محدثة مع أزرار النطق)
 // 🔹 تحميل السؤال (نسخة محدثة مع أزرار النطق + إخفاء زر التالي على آخر سؤال)
 function loadQuestion() {
+  console.log("🌀 loadQuestion(): تحميل السؤال رقم", currentQuestionIndex);
+
     const question = questions[currentQuestionIndex];
     const container = document.querySelector(".img-container");
     const qTextEl = document.getElementById("questionText");
@@ -199,19 +201,25 @@ function loadQuestion() {
 // 🔹 حفظ الإجابة عند الضغط على زر التالي أو إرسال
 function handleAnswer() {
     const question = questions[currentQuestionIndex];
+    
+    console.log("🔍 handleAnswer(): selectedImageValue =", selectedImageValue);
 
     if (question.isText) {
         const text = document.getElementById("textAnswer").value.trim();
         if (!text) { alert("الرجاء إدخال الإجابة"); return false; }
         selectedValues.push({ key: question.valueKey, value: text });
     } else {
-        if (!selectedImageValue) { alert("الرجاء اختيار صورة"); return false; }
+        if (!selectedImageValue) {
+            alert("الرجاء اختيار صورة");
+            return false;
+        }
         selectedValues.push(selectedImageValue);
     }
 
-    console.log("القيم المختارة:", selectedValues);
+    console.log("📦 القيم المختارة:", selectedValues);
     return true;
 }
+
 
 // 🔹 زر (التالي)
 document.getElementById("yesBtn").addEventListener("click", () => {
