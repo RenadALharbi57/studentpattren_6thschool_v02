@@ -118,21 +118,21 @@ function loadQuestion() {
     // عرض السؤال ونضيف زر الاستماع بجانبه
     qTextEl.innerText = question.question;
     // إن كان زر الاستماع موجود من قبل نحدّثه، وإلا ننشئه
-    let qSpeakBtn = document.getElementById("speakQuestionBtn");
-    if (!qSpeakBtn) {
-        qSpeakBtn = document.createElement("button");
-        qSpeakBtn.id = "speakQuestionBtn";
-        qSpeakBtn.type = "button";
-        qSpeakBtn.className = "speak-btn small";
-        qSpeakBtn.title = "استمع للسؤال";
-        qSpeakBtn.innerText = "🔊";
-        qTextEl.parentNode.insertBefore(qSpeakBtn, qTextEl.nextSibling);
-    }
-    // عند الضغط يقرأ نص السؤال
-    qSpeakBtn.onclick = () => speakText(question.question);
+    // let qSpeakBtn = document.getElementById("speakQuestionBtn");
+    // if (!qSpeakBtn) {
+    //     qSpeakBtn = document.createElement("button");
+    //     qSpeakBtn.id = "speakQuestionBtn";
+    //     qSpeakBtn.type = "button";
+    //     qSpeakBtn.className = "speak-btn small";
+    //     qSpeakBtn.title = "استمع للسؤال";
+    //     qSpeakBtn.innerText = "🔊";
+    //     qTextEl.parentNode.insertBefore(qSpeakBtn, qTextEl.nextSibling);
+    // }
+    // // عند الضغط يقرأ نص السؤال
+    // qSpeakBtn.onclick = () => speakText(question.question);
 
     // إعادة تعيين الاختيار الحالي
-    selectedImageValue = null;
+    // selectedImageValue = null;
 
     // إن كان السؤال نصي
     if (question.isText) {
@@ -155,20 +155,20 @@ function loadQuestion() {
             title.innerText = imgObj.title;
 
             // زر الاستماع بجانب العنوان
-            const speakBtn = document.createElement("button");
-            speakBtn.type = "button";
-            speakBtn.className = "speak-btn small-inline";
-            speakBtn.title = "استمع للنص";
-            speakBtn.innerText = "🔊";
-            speakBtn.onclick = (e) => {
-                e.stopPropagation();
-                speakText(imgObj.title);
-            };
+            // const speakBtn = document.createElement("button");
+            // speakBtn.type = "button";
+            // speakBtn.className = "speak-btn small-inline";
+            // speakBtn.title = "استمع للنص";
+            // speakBtn.innerText = "🔊";
+            // speakBtn.onclick = (e) => {
+            //     e.stopPropagation();
+            //     speakText(imgObj.title);
+            // };
 
             // تفاعل النقر على الصورة لاختيارها
             img.addEventListener("click", () => {
                 selectedImageValue = { key: question.valueKey || `q${currentQuestionIndex + 1}`, value: imgObj.value };
-                let isImageselected=true;
+                isImageselected=true;
                     console.log("📌 تم اختيار الصورة:", selectedImageValue ,isImageselected);
 
                 // تأثير بصري للاختيار
@@ -178,7 +178,7 @@ function loadQuestion() {
             });
 
             // ترتيب داخل الكارد
-            title.appendChild(speakBtn);
+            // title.appendChild(speakBtn);
             card.appendChild(img);
             card.appendChild(title);
             container.appendChild(card);
@@ -215,7 +215,7 @@ function handleAnswer() {
           console.log("not text", selectedImageValue,isImageselected);
 
         if (!selectedImageValue) {
-          console.log("no", selectedImageValue,isImageselected);
+          console.log("no", selectedImageValue,);
             alert("الرجاء اختيار صورة");
             return false;
         }
