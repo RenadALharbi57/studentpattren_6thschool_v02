@@ -214,7 +214,7 @@ function handleAnswer() {
     } else { 
           console.log("not text", selectedImageValue,isImageselected);
 
-        if (!selectedImageValue) {
+        if (!isImageselected) {
           console.log("no", selectedImageValue,);
             alert("الرجاء اختيار صورة");
             return false;
