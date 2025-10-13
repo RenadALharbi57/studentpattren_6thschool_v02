@@ -6,7 +6,8 @@ function sanitizeClassName(name) {
 // 🔹 مصفوفة الأسئلة وصورها وقيمها (مع أول سؤالين نصيين)
 const questions = [
     {
-        question: "السؤال الاول كيف تحب أن تتعلم شيئًا جديدًا؟",
+        question: "السؤال الاول كيف تحب أن تتعلم شيئًا جديدًا؟",  valueKey: "q1",
+
         images: [
             { src: "asses/quistionnaire/q1/a2/صورة2.jpg", title:"اشاهد لوحة مليئة بالالرسومات", value: "imagev1" },
             { src: "asses/quistionnaire/q1/a1/صورة1.jpg", title:"اجلس واستمع الى المعلمة", value: "imagea1" },
@@ -15,7 +16,8 @@ const questions = [
         ]
     },
     {
-        question: "السؤال الثاني كيف تحب أن تتعلم عن الحيوانات؟",
+        question: "السؤال الثاني كيف تحب أن تتعلم عن الحيوانات؟",  valueKey: "q2",
+
         images: [
             { src: "asses/quistionnaire/q2/a1/صورة6.jpg", title:"أشاهد صور الحيوانات", value: "imagev3" },
             { src: "asses/quistionnaire/q2/a2/صورة7.jpg", title:"استمع إلي اصوات الحيوانات", value: "imagea3" },
@@ -24,7 +26,8 @@ const questions = [
         ]
     },
     {
-        question: "السؤال الثالث كيف تحب أن تتعلم الأرقام ؟",
+        question: "السؤال الثالث كيف تحب أن تتعلم الأرقام ؟",  valueKey: "q3",
+
         images: [
             { src: "asses/quistionnaire/q3/a1/صورة12.jpg", title:"أشاهد بطاقات الأرقام", value: "imagev2" },
             { src: "asses/quistionnaire/q3/a2/صورة10.jpg", title:"أستمع الى نشيد الأرقام", value: "imagea2" },
@@ -33,7 +36,7 @@ const questions = [
         ]
     },
     {
-        question: "السؤال الرابع كيف تحب ان تحفظ الأناشيد ؟",
+        question: "السؤال الرابع كيف تحب ان تحفظ الأناشيد ؟", valueKey: "q4",
         images: [
             { src: "asses/quistionnaire/q4/a1/صورة1.jpg", title:"أشاهد صور معبرة عن كلمات النشيد", value: "imagev4" },
             { src: "asses/quistionnaire/q4/a2/صورة2.jpg", title:"أستمع للمعلمة وهي تغني", value: "imagea4" },
@@ -43,7 +46,7 @@ const questions = [
         
     },
     {
-        question: "السؤال الخامس ماذا تفعل عندما تريد معرفة طريق البيت ؟",
+        question: "السؤال الخامس ماذا تفعل عندما تريد معرفة طريق البيت ؟",  valueKey: "q5",
         images: [
             { src: "asses/quistionnaire/q5/a1/صورة1.jpg", title:"أشاهد خريطة او رسمة للحي", value: "imagev5" },
             { src: "asses/quistionnaire/q5/a2/صورة2.jpg", title:"استمع لشخص يشرح الاتجاهات", value: "imagea5" },
@@ -52,7 +55,7 @@ const questions = [
         ]
     },
     {
-        question: "السؤال السادس ماذا تفعل عندما تلعب لعبة تركيب (Puzzle)",
+        question: "السؤال السادس ماذا تفعل عندما تلعب لعبة تركيب (Puzzle)", valueKey: "q6",
         images: [
             { src: "asses/quistionnaire/q6/a1/صورة5.jpg", title:"اشاهد الصورة كاملة قبل البدأ", value: "imagev6" },
             { src: "asses/quistionnaire/q6/a2/صورة6.jpg", title:"استمع لشرح صديقي كيف يركبها", value: "imagea6" },
@@ -61,7 +64,7 @@ const questions = [
         ]
     },
     {
-        question: "السؤال السابع ماذا تفعل اذا اردت تعلم لعبة رياضية ؟",
+        question: "السؤال السابع ماذا تفعل اذا اردت تعلم لعبة رياضية ؟", valueKey: "q7",
         images: [
             { src: "asses/quistionnaire/q7/a1/صورة8.jpg", title:"اشاهد صور او فيديو للعبة", value: "imagev7" },
             { src: "asses/quistionnaire/q7/a2/صورة9.jpg", title:"استمع لشرح القوانين من المدرب", value: "imagea7" },
@@ -70,7 +73,7 @@ const questions = [
         ]
     },
     {
-        question: "السؤال الثامن كيف تحب ان تتعلم عن الفواكة ؟ ",
+        question: "السؤال الثامن كيف تحب ان تتعلم عن الفواكة ؟ ", valueKey: "q8",
         images: [
             { src: "asses/quistionnaire/q8/a1/صورة12.jpg", title:"اشاهد صور الفواكة الملونة", value: "imagev8" },
             { src: "asses/quistionnaire/q8/a2/صورة13.jpg", title:"استمع للمعلمة وهي تتحدث عن الفواكة", value: "imagea8" },
@@ -163,6 +166,9 @@ function loadQuestion() {
             // تفاعل النقر على الصورة لاختيارها
             img.addEventListener("click", () => {
                 selectedImageValue = { key: question.valueKey || `q${currentQuestionIndex + 1}`, value: imgObj.value };
+                
+                    console.log("📌 تم اختيار الصورة:", selectedImageValue);
+
                 // تأثير بصري للاختيار
                 const allImgs = container.querySelectorAll(".answer-image");
                 allImgs.forEach(i => i.style.border = "none");
