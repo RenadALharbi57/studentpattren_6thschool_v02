@@ -86,7 +86,7 @@ const questions = [
 let currentQuestionIndex = 0;
 let selectedValues = [];
 let selectedImageValue = null; // لتخزين الصورة المختارة للسؤال الحالي
-
+let isImageselected=false;
 document.getElementById("startBtn").addEventListener("click", () => {
     const childName = document.getElementById("childName").value.trim();
     const childDesc = document.getElementById("childDesc").value; // الآن select
@@ -168,8 +168,8 @@ function loadQuestion() {
             // تفاعل النقر على الصورة لاختيارها
             img.addEventListener("click", () => {
                 selectedImageValue = { key: question.valueKey || `q${currentQuestionIndex + 1}`, value: imgObj.value };
-                
-                    console.log("📌 تم اختيار الصورة:", selectedImageValue);
+                let isImageselected=true;
+                    console.log("📌 تم اختيار الصورة:", selectedImageValue ,isImageselected);
 
                 // تأثير بصري للاختيار
                 const allImgs = container.querySelectorAll(".answer-image");
@@ -202,7 +202,7 @@ function loadQuestion() {
 function handleAnswer() {
     const question = questions[currentQuestionIndex];
     
-    console.log("🔍 handleAnswer(): selectedImageValue =", selectedImageValue);
+    console.log("🔍 handleAnswer(): selectedImageValue =", selectedImageValue,isImageselected);
 
     if (question.isText) {
           console.log("text", selectedImageValue);
@@ -212,10 +212,10 @@ function handleAnswer() {
  }
         selectedValues.push({ key: question.valueKey, value: text });
     } else { 
-          console.log("not text", selectedImageValue);
+          console.log("not text", selectedImageValue,isImageselected);
 
         if (!selectedImageValue) {
-          console.log("no", selectedImageValue);
+          console.log("no", selectedImageValue,isImageselected);
             alert("الرجاء اختيار صورة");
             return false;
         }
