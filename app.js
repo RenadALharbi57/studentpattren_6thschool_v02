@@ -162,7 +162,7 @@ function loadQuestion() {
 
             // تفاعل النقر على الصورة لاختيارها
             img.addEventListener("click", () => {
-                selectedImageValue = imgObj.value;
+                selectedImageValue = { key: question.valueKey || `q${currentQuestionIndex + 1}`, value: imgObj.value };
                 // تأثير بصري للاختيار
                 const allImgs = container.querySelectorAll(".answer-image");
                 allImgs.forEach(i => i.style.border = "none");
