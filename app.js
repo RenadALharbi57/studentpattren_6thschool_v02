@@ -228,9 +228,9 @@ function handleAnswer() {
 
 
 // 🔹 زر (التالي)
-document.getElementById("yesBtn").addEventListener("click", () => {
+document.getElementById("yesBtn").addEventListener("click", (e) => {
+  e.preventDefault();
    if (!handleAnswer()) return;
-
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         loadQuestion();
