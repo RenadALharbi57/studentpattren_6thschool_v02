@@ -168,6 +168,7 @@
 
 
 document.getElementById("noBtn").addEventListener("click", () => {
+    console.log(selectedValues);
     // تأكد من حساب نمط التفكير قبل استخدامه
     const resultMessage = document.getElementById("resultMessage");
     const thinkingStyle = detectThinkingStyle(selectedValues); // احسب النمط
