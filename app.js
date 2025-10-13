@@ -205,11 +205,17 @@ function handleAnswer() {
     console.log("🔍 handleAnswer(): selectedImageValue =", selectedImageValue);
 
     if (question.isText) {
+          console.log("text", selectedImageValue);
+
         const text = document.getElementById("textAnswer").value.trim();
-        if (!text) { alert("الرجاء إدخال الإجابة"); return false; }
+        if (!text) { alert("الرجاء إدخال الإجابة"); return false;     console.log("🔍 handleAnswer(): selectedImageValue =", selectedImageValue);
+ }
         selectedValues.push({ key: question.valueKey, value: text });
-    } else {
+    } else { 
+          console.log("not text", selectedImageValue);
+
         if (!selectedImageValue) {
+          console.log("no", selectedImageValue);
             alert("الرجاء اختيار صورة");
             return false;
         }
