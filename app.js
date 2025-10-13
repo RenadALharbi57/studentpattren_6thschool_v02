@@ -82,7 +82,11 @@ const questions = [
         ]
     },
 ];
-
+const classOptions = [
+  "1-2", "2-2",
+  "3-2", "4-2", "5-2", "تمهيدي 1", "تمهيدي 2", "تمهيدي 3", "تمهيدي 4",
+  "تمهيدي 5", "تمهيدي 6"
+];
 let currentQuestionIndex = 0;
 let selectedValues = [];
 let selectedImageValue = null; // لتخزين الصورة المختارة للسؤال الحالي
@@ -327,67 +331,27 @@ function detectThinkingStyle(answers) {
 })();
 
 // 🔊 دالة لقراءة نص عربي باستخدام Web Speech API
-function speakText(text) {
-    if (!("speechSynthesis" in window)) {
-        alert("جهازك لا يدعم ميزة القراءة الصوتية.");
-        return;
-    }
-    // أوقف أي كلام جاري
-    window.speechSynthesis.cancel();
+// function speakText(text) {
+//     if (!("speechSynthesis" in window)) {
+//         alert("جهازك لا يدعم ميزة القراءة الصوتية.");
+//         return;
+//     }
+//     // أوقف أي كلام جاري
+//     window.speechSynthesis.cancel();
 
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = "ar-SA";         // تعيين اللغة للعربية السعودية (أقرب دعم للعربية)
-    utter.rate = 0.95;            // سرعة مقروءة معقولة
-    utter.pitch = 1;
+//     const utter = new SpeechSynthesisUtterance(text);
+//     utter.lang = "ar-SA";         // تعيين اللغة للعربية السعودية (أقرب دعم للعربية)
+//     utter.rate = 0.95;            // سرعة مقروءة معقولة
+//     utter.pitch = 1;
 
-    // اختيار صوت عربي إن وُجد (تحسين جودة النطق)
-    const voices = window.speechSynthesis.getVoices();
-    const arVoice = voices.find(v => v.lang && v.lang.startsWith("ar"));
-    if (arVoice) utter.voice = arVoice;
+//     // اختيار صوت عربي إن وُجد (تحسين جودة النطق)
+//     const voices = window.speechSynthesis.getVoices();
+//     const arVoice = voices.find(v => v.lang && v.lang.startsWith("ar"));
+//     if (arVoice) utter.voice = arVoice;
 
-    window.speechSynthesis.speak(utter);
-}
-// ===== دالة الاحتفال: كونفيتي + نجوم + صوت =====
-function showCelebration(options = {}) {
-  const confettiDuration = options.duration || 2200;
-  const overlay = document.getElementById('celebrationOverlay');
-  const audio = document.getElementById('applauseAudio');
+//     window.speechSynthesis.speak(utter);
+// }
 
-  // تشغيل الصوت (إذا سمح المتصفح)
-  if (audio) {
-    audio.currentTime = 0;
-    audio.volume = 0.85;
-    audio.play().catch(e => {
-      // قد يمنع المتصفح التشغيل التلقائي - هذا طبيعي
-      console.warn('Autoplay prevented or audio play failed:', e);
-    });
-  }
-
-  // تشغيل الكونفيتي باستمرار لمدّة محددة
-  if (typeof confetti === 'function') {
-    const end = Date.now() + confettiDuration;
-    (function frame() {
-      confetti({
-        particleCount: 10,
-        spread: 60,
-        startVelocity: 45,
-        ticks: 60,
-        origin: { x: Math.random(), y: Math.random() * 0.4 }
-      });
-      if (Date.now() < end) requestAnimationFrame(frame);
-    })();
-  }
-
-const classOptions = [
-  "1-2", "2-2",
-  "3-2", "4-2", "5-2", "تمهيدي 1", "تمهيدي 2", "تمهيدي 3", "تمهيدي 4",
-  "تمهيدي 5", "تمهيدي 6"
-];
-
-// دالة لتحويل اسم الفصل لمعرف صالح لمستند Firestore
-function sanitizeClassName(name) {
-  return name.trim().replace(/\s+/g, '_').replace(/[^\w\-]/g, '').toLowerCase();
-}
 
 // تعبئة الـ select في الصفحة
 function populateClassSelect() {
@@ -422,7 +386,39 @@ function populateClassSelect() {
     }
   });
 }
-populateClassSelect();
+
+// ===== دالة الاحتفال: كونفيتي + نجوم + صوت =====
+function showCelebration(options = {}) {
+  const confettiDuration = options.duration || 2200;
+  const overlay = document.getElementById('celebrationOverlay');
+  const audio = document.getElementById('applauseAudio');
+
+  // تشغيل الصوت (إذا سمح المتصفح)
+  if (audio) {
+    audio.currentTime = 0;
+    audio.volume = 0.85;
+    audio.play().catch(e => {
+      // قد يمنع المتصفح التشغيل التلقائي - هذا طبيعي
+      console.warn('Autoplay prevented or audio play failed:', e);
+    });
+  }
+
+  // تشغيل الكونفيتي باستمرار لمدّة محددة
+  if (typeof confetti === 'function') {
+    const end = Date.now() + confettiDuration;
+    (function frame() {
+      confetti({
+        particleCount: 10,
+        spread: 60,
+        startVelocity: 45,
+        ticks: 60,
+        origin: { x: Math.random(), y: Math.random() * 0.4 }
+      });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    })();
+  }
+
+
 
   // نجوم متحركة
   if (overlay) {
@@ -442,6 +438,7 @@ populateClassSelect();
     setTimeout(() => { overlay.innerHTML = ''; }, confettiDuration + 600);
   }
 }
+
 // robust call — ضع هذا في نهاية app.js بعد تعريف populateClassSelect
 (function ensurePopulate() {
   function tryPopulate() {
@@ -476,77 +473,7 @@ populateClassSelect();
     tryPopulate();
   }, 700);
 })();
-/* === Fallback: ضمان ملأ قائمة الفصول لو populateClassSelect غير معرفة ===
-   ألصق هذا السطر في نهاية app.js (آخر الملف). */
-(function(){
-  try {
-    // لو الدالة معرفة بالفعل — استدعيها مباشرة
-    if (typeof populateClassSelect === 'function') {
-      try {
-        populateClassSelect();
-        console.log('populateClassSelect: executed (existing function).');
-        return;
-      } catch (e) {
-        console.warn('populateClassSelect موجودة لكن استدعاؤها فشل:', e);
-        // نستمر لعمل الفالباك
-      }
-    }
 
-    // ---------- فالباك: نملأ select#childDesc بمصفوفة classOptions ثابتة ----------
-    const classOptionsFallback = [
-      "1-2","2-2","3-2","4-2","5-2",
-      "تمهيدي 1","تمهيدي 2","تمهيدي 3","تمهيدي 4","تمهيدي 5","تمهيدي 6"
-    ];
-
-    function fillSelectFallback() {
-      const sel = document.getElementById('childDesc');
-      if (!sel) {
-        console.warn('fillSelectFallback: العنصر #childDesc غير موجود الآن.');
-        return false;
-      }
-
-      // إزالة خيارات مولّدة سابقًا
-      sel.querySelectorAll('option[data-generated="1"]').forEach(o => o.remove());
-
-      // اضف placeholder إن لم يكن موجود
-      if (!sel.querySelector('option[disabled]')) {
-        const placeholder = document.createElement('option');
-        placeholder.value = "";
-        placeholder.disabled = true;
-        placeholder.selected = true;
-        placeholder.innerText = "اختر الفصل";
-        sel.insertBefore(placeholder, sel.firstChild);
-      }
-
-      // أضف الخيارات من المصفوفة
-      classOptionsFallback.forEach(opt => {
-        if (![...sel.options].some(o => o.value === opt)) {
-          const el = document.createElement('option');
-          el.value = opt;
-          el.innerText = opt;
-          el.setAttribute('data-generated', '1');
-          sel.appendChild(el);
-        }
-      });
-
-      console.log('fillSelectFallback: تم ملء القائمة بنجاح.');
-      return true;
-    }
-
-    // حاول التنفيذ الآن أو عند جاهزية DOM
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', fillSelectFallback);
-    } else {
-      fillSelectFallback();
-    }
-
-    // كذلك نعلن عن الفالباك كدالة عامة لكي تتمكن من استدعائها لاحقًا
-    window.populateClassSelect = fillSelectFallback;
-    console.log('Fallback populateClassSelect attached to window.');
-  } catch (err) {
-    console.error('Fallback error:', err);
-  }
-})();
 
 
 
