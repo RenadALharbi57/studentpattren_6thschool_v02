@@ -110,6 +110,8 @@ document.getElementById("startBtn").addEventListener("click", () => {
 // 🔹 تحميل السؤال (نسخة محدثة مع أزرار النطق + إخفاء زر التالي على آخر سؤال)
 function loadQuestion() {
   console.log("🌀 loadQuestion(): تحميل السؤال رقم", currentQuestionIndex);
+    selectedImageValue = null;
+    isImageselected = false;
 
     const question = questions[currentQuestionIndex];
     const container = document.querySelector(".img-container");
