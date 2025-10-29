@@ -67,6 +67,9 @@
         </select>
 
         <button id="loadBtn" class="primary">عرض النتائج</button>
+        <button id="Homebtn">العودة للصفحة الرئيسية </button>
+
+        
 
         <div style="flex:1"></div>
 
@@ -257,6 +260,21 @@
 
   <!-- كود التصدير: يصدر الجدول الظاهر حالياً -->
   <script>
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const Homebtn = document.getElementById("Homebtn");
+
+    // التأكد من وجود الزر
+    if (Homebtn) {
+        Homebtn.addEventListener("click", () => {
+            // توجيه المستخدم إلى صفحة "storedAnswers.html"
+            window.location.href = "index.html";
+        });
+    } else {
+        console.error("الزر 'Homebtn' غير موجود في الصفحة");
+    }
+});
+    
     document.getElementById("exportBtn").addEventListener("click", () => {
       const table = document.getElementById("resultsTable");
 
@@ -326,4 +344,5 @@
   </script>
 </body>
 </html>
+
 
